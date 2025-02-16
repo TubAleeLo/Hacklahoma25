@@ -8,7 +8,7 @@
   }
   
   .logo {
-    height: 80px;
+    height: 100px;
     cursor: pointer;
     color: #E0D7FF;
   }
@@ -19,8 +19,9 @@
   }
   
   .user-profile .profile-pic {
-    height: 40px;
-    width: 40px;
+    height: 60px;
+    width: 60px;
+    padding: 20px;
     border-radius: 50%;
     cursor: pointer;
   }

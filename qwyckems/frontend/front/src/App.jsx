@@ -2,9 +2,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import Standings from "./components/Standings"; 
 import Home from "./components/Home";
 import Week from "./components/Week";
+import Standings from "./components/Standings";
+import Admin from "./components/Admin"; // <-- Import Admin
 import "./styles/App.css";
 
 const App = () => {
@@ -23,10 +24,11 @@ const App = () => {
           <Sidebar expandedLeague={expandedLeague} toggleLeague={toggleLeague} setCurrentPage={setCurrentPage} />
           <div className="content">
             {currentPage === "home" && <Home setCurrentPage={setCurrentPage} />}
-            {currentPage === "standings" && <Standings />}
             {currentPage === "week1" && <Week week="1" />}
             {currentPage === "week2" && <Week week="2" />}
             {currentPage === "week3" && <Week week="3" />}
+            {currentPage === "standings" && <Standings />}
+            {currentPage === "admin" && <Admin />} {/* <-- Add Admin Component */}
           </div>
         </div>
       </div>
