@@ -1,0 +1,74 @@
+/* Edit Profile Container */
+.edit-profile-container {
+    max-width: 400px;
+    margin: 100px auto; /* Centers the form */
+    padding: 30px;
+    background: rgba(26, 19, 37, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    color: white;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures everything inside is centered */
+}
+
+/* Form Styling */
+.edit-profile-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Labels */
+.edit-profile-container label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Input Fields */
+.edit-profile-container input,
+.edit-profile-container textarea {
+    width: calc(100% - 20px); /* Ensures width stays inside container */
+    padding: 12px;
+    margin-top: 5px;
+    background: rgba(61, 46, 96, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    text-align: left;
+}
+
+/* Adjust Textarea */
+.edit-profile-container textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Save Changes Button */
+.edit-profile-container button {
+    background-color: rgba(128, 90, 213, 0.9);
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 5px;
+    transition: background 0.2s ease-in-out;
+}
+
+.edit-profile-container button:hover {
+    background-color: rgba(107, 70, 193, 1);
+}
