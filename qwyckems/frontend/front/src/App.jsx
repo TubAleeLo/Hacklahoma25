@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { useState } from "react";
 import "./App.css"; // Import styles
 
@@ -11,7 +11,12 @@ const App = () => {
         {/* Navbar */}
         <nav className="navbar">
           <img src="/qlogo.webp" alt="QwyckEm's Logo" className="logo" />
-          <h1>QwyckEm's - PickEm's Done Faster</h1>
+
+          <div className="navbar-title">
+            <h1>QwyckEm's</h1>
+            <p>Pick Em's Done Faster</p>
+          </div>
+
           <div className="user-profile">
             <img src="/defaultprofile.avif" alt="User Profile" className="profile-pic" />
           </div>
