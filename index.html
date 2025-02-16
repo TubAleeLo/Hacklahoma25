@@ -82,10 +82,9 @@
                 const data = await response.json();
                 document.getElementById("repo-info").innerHTML = `
                     <h2>Description</h2>
-                    <p>${data.description || "During the college football season Alee, Raleigh, and Roman were part of different College Football Pick Em's groups. Traditionally, each group commissioner would manually create Pick Em's lists, collect participants' predictions, and input game results into an Excel spreadsheet to determine the best predictor.."}</p>
-                    <p>During the college football season, Matthew, Alee, Raleigh, and Roman were part of different College Football Pick Em's groups. Traditionally, each group commissioner would manually create Pick Em's lists, collect participants' predictions, and input game results into an Excel spreadsheet to determine the best predictor.</p>
-                    <p>Realizing that this tedious process took hours away from socializing and fun, we created Qwyk Em's! Our platform streamlines the entire process by automatically generating Pick Em's sheets using smart algorithms. It records participants' selections, tracks game results, and ranks players effortlessly.</p>
-                    <p>Instead of spending over three hours per week manually updating spreadsheets for 18 weeks and bowl games, Qwyk Em's turns the game into a fun, instant activity for groups—saving time and enhancing the experience!</p>
+                    <p>${data.description || "During the college football season Alee, Raleigh, and Roman and I were part of different College Football Pick Em's groups. Traditionally, each group commissioner would manually create Pick Em's lists, collect participants' predictions, and input game results into an Excel spreadsheet to determine the best predictor."}</p>
+                    <p>Realizing that this tedious process took hours away from socializing and fun, we created QwyckEm's! Our platform streamlines the entire process by automatically generating Pick Em's sheets using smart algorithms. It records participants' selections, tracks game results, and ranks players effortlessly.</p>
+                    <p>Instead of spending over three hours per week manually updating spreadsheets for 18 weeks and bowl games, QwyckEm's turns the game into a fun, instant activity for groups—saving time and enhancing the experience!</p>
                     <p class="meta">⭐ Stars: ${data.stargazers_count} | 🍴 Forks: ${data.forks_count} | 🛠 Open Issues: ${data.open_issues_count}</p>
                 `;
             } catch (error) {
