@@ -1,0 +1,54 @@
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(135deg, #090617, #18102D); /* Deep purplish black */
+    backdrop-filter: blur(8px); /* Glassmorphism effect */
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    transition: 0.3s ease-in-out;
+  }
+
+  .sidebar:hover {
+    backdrop-filter: blur(12px);
+  }
+    
+  .sidebar h2 {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+  
+  .sidebar li:hover {
+    background-color: #3D2E60;
+  }
+  
+  .week {
+    padding-left: 20px;
+    font-size: 0.9rem;
+  }
+  
+  .admin-section {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .admin-tab {
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+  
+  .admin-tab:hover {
+    background-color: #3D2E60;
+  }
+  

@@ -1,0 +1,81 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background: linear-gradient(90deg, rgba(26, 19, 37, 0.9), rgba(61, 46, 96, 0.9));
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 75px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+/* Left Side - Logo & Title */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.navbar-left:hover {
+  transform: scale(1.05);
+}
+
+.logo {
+  height: 55px;
+  margin-right: 12px;
+}
+
+.navbar-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: white;
+  transition: text-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Right Side - User Profile */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: 50px;
+}
+
+.profile-pic {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.profile-pic:hover {
+  box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+/* User Info (Name & Role) */
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.user-role {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+  

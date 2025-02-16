@@ -1,0 +1,56 @@
+.week-container {
+    padding: 20px;
+  }
+  
+  .game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .game-card {
+    background: linear-gradient(135deg, #090617, #18102D); /* Deep purplish black */
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 160px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .game-card:hover {
+    transform: translateY(-5px); /* Slight elevation on hover */
+  }
+  
+  
+  .game-info {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .game-selection {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .pick-button {
+    padding: 10px;
+    border: none;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: 45%;
+    border-radius: 5px;
+  }
+  
+  .pick-button.selected {
+    background-color: purple;
+    transform: scale(1.2);
+  }
+  
