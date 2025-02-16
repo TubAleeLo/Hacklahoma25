@@ -13,7 +13,7 @@ db = client.get_database('qwyckemsDatabase')
 games = db.games
 
 
-def addGame(week: int, year: int, awayTeam: str, homeTeam: str):
+def addGame(week: str, year: str, awayTeam: str, homeTeam: str):
     newGame = {
         'week' : week,
         'year' : year,

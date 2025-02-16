@@ -16,7 +16,7 @@ uri = mongo_uri
 # client to connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))
 db = client.get_database('qwyckemsDatabase')
-games = db.games
+gameDB = db.games
 player = db.players
 leaguePlayer = db.leaguePlayers
 
@@ -24,9 +24,10 @@ from players import addPlayer
 from games import addGame
 from picks import *
 
-@app.route("/<username>/leagues/<leagueID>/week/<week_number>")
-def getWeek(week_number):
-    return jsonify(loads(dumps(games.find({'week':week_number}))))
+@app.route("/<week_number>/week")
+def getWeek(week_number: str):
+    var = list(gameDB.find({'week':week_number}))
+    return jsonify(loads(dumps(var)))
 
 @app.route('/login/<username>', methods=['GET','POST'])
 def login(username):
@@ -35,9 +36,9 @@ def login(username):
         newUser = addPlayer(username)
         if newUser == 0:
             return jsonify({'response':'fuck it we ball'})
-        return jsonify(loads(dumps(player.find_one({'playerID':username}))))
+        return jsonify(loads(dumps(list(player.find_one({'playerID':username})))))
     else:
-        return jsonify(loads(dumps(leaguePlayer.find({'username':username}))))
+        return jsonify(loads(dumps(list(leaguePlayer.find({'username':username})))))
 
 # To get data:
 # json_data 
