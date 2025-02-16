@@ -1,9 +1,15 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import "./App.css"; // Import styles
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState("home"); // Simple page switching
+  const [expandedLeague, setExpandedLeague] = useState(null);
+
+  const toggleLeague = (league) => {
+    setExpandedLeague(expandedLeague === league ? null : league);
+  };
 
   return (
     <Router>
@@ -28,10 +34,19 @@ const App = () => {
           <aside className="sidebar">
             <h2>My Leagues</h2>
             <ul>
-              <li onClick={() => setCurrentPage("home")}>OU CS 2025</li>
-              <li className="week" onClick={() => setCurrentPage("week1")}>Week 1</li>
-              <li className="week" onClick={() => setCurrentPage("week2")}>Week 2</li>
-              <li className="week" onClick={() => setCurrentPage("week3")}>Week 3</li>
+              <li onClick={() => toggleLeague("OU CS 2025")}>
+                OU CS 2025
+              </li>
+              <motion.ul
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: expandedLeague === "OU CS 2025" ? "auto" : 0, opacity: expandedLeague === "OU CS 2025" ? 1 : 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                style={{ overflow: "hidden" }}
+              >
+                <li className="week" onClick={() => setCurrentPage("week1")}>Week 1</li>
+                <li className="week" onClick={() => setCurrentPage("week2")}>Week 2</li>
+                <li className="week" onClick={() => setCurrentPage("week3")}>Week 3</li>
+              </motion.ul>
             </ul>
           </aside>
 
