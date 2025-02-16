@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px;
+    background-color: #1A1325;
+    color: #E0D7FF;
+  }
+  
+  .logo {
+    height: 80px;
+    cursor: pointer;
+    color: #E0D7FF;
+  }
+  
+  .navbar-title {
+    text-align: center;
+    font-size: 20px;
+  }
+  
+  .user-profile .profile-pic {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,34 @@
+/* Ensure the entire website uses full width & height */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background-color: #121212; /* Dark background */
+  color: white;
+}
+
+/* Ensure main layout takes full screen */
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Sidebar and main content should expand properly */
+.main-container {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* Make content area fill the remaining space */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}

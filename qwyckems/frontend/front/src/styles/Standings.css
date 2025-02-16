@@ -1,0 +1,49 @@
+.standings-container {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  .standings-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .standings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    padding: 10px;
+    background-color: #1a1325;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+  }
+  
+  .rank {
+    font-weight: bold;
+    margin-right: 15px;
+  }
+  
+  .username {
+    flex-grow: 1;
+    text-align: left;
+  }
+  
+  .points {
+    font-weight: bold;
+    margin-right: 15px;
+  }
+  
+  .record {
+    color: #a0a0ff;
+    font-weight: bold;
+  }
+  
