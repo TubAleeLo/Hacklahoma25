@@ -1,14 +1,19 @@
 /* Ensure the entire website uses full width & height */
-html, body {
+body, html {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  background-color: #121212; /* Dark background */
+  font-family: "Rajdhani", sans-serif;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, rgba(13, 8, 25, 0.85), rgba(26, 19, 37, 0.85)), 
+              url("../assets/stadiumbg.jpg") center/cover no-repeat;
+  background-size: cover; /* Ensures image covers entire screen */
+  background-position: center; /* Centers the image */
+  background-attachment: fixed; /* Ensures it stays while scrolling */
+  background-blend-mode: overlay;
   color: white;
 }
+
 
 /* Ensure main layout takes full screen */
 .layout {
@@ -30,5 +35,22 @@ html, body {
 .content {
   flex-grow: 1;
   padding: 20px;
-  overflow-y: auto;
+  background: rgba(26, 19, 37, 0.4); /* Lighter overlay */
+  border-radius: 10px;
+  backdrop-filter: blur(6px); /* Lighter blur to reveal stadium */
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
 }
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
