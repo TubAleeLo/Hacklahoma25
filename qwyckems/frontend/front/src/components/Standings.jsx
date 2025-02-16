@@ -12,7 +12,7 @@ const Standings = () => {
 
   return (
     <div className="standings-container">
-      <h2>League Standings</h2>
+      <h2>LEAGUE STANDINGS</h2>
       <div className="standings-list">
         {rankings.map((user, index) => (
           <div key={index} className="standings-item">

@@ -5,7 +5,8 @@ import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
 import Week from "./components/Week";
 import Standings from "./components/Standings";
-import Admin from "./components/Admin"; // <-- Import Admin
+import Admin from "./components/Admin";
+import SetCorrectPicks from "./components/SetCorrectPicks";
 import "./styles/App.css";
 
 const App = () => {
@@ -28,7 +29,8 @@ const App = () => {
             {currentPage === "week2" && <Week week="2" />}
             {currentPage === "week3" && <Week week="3" />}
             {currentPage === "standings" && <Standings />}
-            {currentPage === "admin" && <Admin />} {/* <-- Add Admin Component */}
+            {currentPage === "admin" && <Admin />}
+            {currentPage === "setCorrectPicks" && <SetCorrectPicks />} 
           </div>
         </div>
       </div>

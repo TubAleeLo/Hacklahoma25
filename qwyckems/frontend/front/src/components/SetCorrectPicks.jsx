@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import "../styles/Week.css";
+import "../styles/SetCorrectPicks.css";
 
 const Week = ({ week }) => {
   const [picks, setPicks] = useState({});

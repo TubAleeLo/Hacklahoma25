@@ -20,12 +20,15 @@ const Sidebar = ({ expandedLeague, toggleLeague, setCurrentPage }) => {
         </motion.ul>
       </ul>
 
-      {/* Admin Panel - Separate from leagues */}
+      {/* Admin Section */}
       <div className="admin-section">
         <h2>Admin</h2>
         <ul>
           <li className="admin-tab" onClick={() => setCurrentPage("admin")}>
             Admin Panel
+          </li>
+          <li className="admin-tab" onClick={() => setCurrentPage("setCorrectPicks")}>
+            Set Correct Picks
           </li>
         </ul>
       </div>
@@ -34,4 +37,3 @@ const Sidebar = ({ expandedLeague, toggleLeague, setCurrentPage }) => {
 };
 
 export default Sidebar;
-
