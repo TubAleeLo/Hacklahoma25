@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Live Commit Feed</title>
+    <title>Hacklahoma25 - GitHub Live Viewer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,44 +11,76 @@
             margin: 20px;
             background-color: #f4f4f4;
         }
-        h1 {
+        h1, h2 {
             color: #333;
         }
-        #commits {
-            max-width: 600px;
+        #repo-info, #commits, #repo-content {
+            max-width: 800px;
             margin: auto;
             background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: left;
         }
-        .commit {
+        .commit, .file {
             border-bottom: 1px solid #ddd;
             padding: 10px 0;
         }
-        .commit:last-child {
+        .commit:last-child, .file:last-child {
             border-bottom: none;
         }
         .author {
             font-weight: bold;
         }
-        .date {
+        .date, .meta {
             color: gray;
             font-size: 12px;
+        }
+        a {
+            text-decoration: none;
+            color: #0366d6;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <h1>Latest Commits</h1>
-    <div id="commits">Loading...</div>
+    <h1>Hacklahoma25 - GitHub Repository Viewer</h1>
+
+    <div id="repo-info">Loading repository details...</div>
+
+    <h2>Latest Commits</h2>
+    <div id="commits">Loading commits...</div>
+
+    <h2>Repository Contents</h2>
+    <div id="repo-content">Loading files...</div>
 
     <script>
-        async function fetchCommits() {
-            const owner = "tubaleelo";
-            const repo = "Hacklahoma25";
-            const url = `https://api.github.com/repos/${owner}/${repo}/commits`;
+        const owner = "tubaleelo";  
+        const repo = "Hacklahoma25";  
 
+        async function fetchRepoInfo() {
+            const url = `https://api.github.com/repos/${owner}/${repo}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                document.getElementById("repo-info").innerHTML = `
+                    <h2><a href="${data.html_url}" target="_blank">${data.full_name}</a></h2>
+                    <p>${data.description || "No description available."}</p>
+                    <p class="meta">⭐ Stars: ${data.stargazers_count} | 🍴 Forks: ${data.forks_count} | 🛠 Open Issues: ${data.open_issues_count}</p>
+                `;
+            } catch (error) {
+                console.error("Error fetching repository info:", error);
+                document.getElementById("repo-info").innerHTML = "Failed to load repository details.";
+            }
+        }
+
+        async function fetchCommits() {
+            const url = `https://api.github.com/repos/${owner}/${repo}/commits`;
             try {
                 const response = await fetch(url);
                 const commits = await response.json();
@@ -73,8 +105,38 @@
             }
         }
 
-        fetchCommits();
-        setInterval(fetchCommits, 30000); // Refresh every 30 seconds
+        async function fetchRepoContent() {
+            const url = `https://api.github.com/repos/${owner}/${repo}/contents`;
+            try {
+                const response = await fetch(url);
+                const contents = await response.json();
+                const contentContainer = document.getElementById("repo-content");
+                contentContainer.innerHTML = "";
+
+                contents.forEach(item => {
+                    const fileDiv = document.createElement("div");
+                    fileDiv.classList.add("file");
+
+                    fileDiv.innerHTML = `
+                        <p><a href="${item.html_url}" target="_blank">${item.name}</a> (${item.type})</p>
+                    `;
+
+                    contentContainer.appendChild(fileDiv);
+                });
+            } catch (error) {
+                console.error("Error fetching repo contents:", error);
+                document.getElementById("repo-content").innerHTML = "Failed to load repository contents.";
+            }
+        }
+
+        function updatePage() {
+            fetchRepoInfo();
+            fetchCommits();
+            fetchRepoContent();
+        }
+
+        updatePage();
+        setInterval(updatePage, 30000); // Refresh every 30 seconds
     </script>
 
 </body>
