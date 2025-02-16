@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacklahoma25 - GitHub Repo Explorer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        #repo-info, #commits, #repo-content {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .commit, .file {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .commit:last-child, .file:last-child {
+            border-bottom: none;
+        }
+        .author {
+            font-weight: bold;
+        }
+        .date, .meta {
+            color: gray;
+            font-size: 12px;
+        }
+        a {
+            text-decoration: none;
+            color: #0366d6;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-btn {
+            display: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #0366d6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Hacklahoma25 - GitHub Repository Viewer</h1>
+
+    <div id="repo-info">Loading repository details...</div>
+
+    <h2>Latest Commits</h2>
+    <div id="commits">Loading commits...</div>
+
+    <h2>Repository Contents</h2>
+    <button class="back-btn" onclick="goBack()">⬅ Back</button>
+    <div id="repo-content">Loading files...</div>
+
+    <script>
+        const owner = "tubaleelo";  
+        const repo = "Hacklahoma25";  
+        let currentPath = "";  // Tracks current directory path
+
+        async function fetchRepoInfo() {
+            const url = `https://api.github.com/repos/${owner}/${repo}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                document.getElementById("repo-info").innerHTML = `
+                    <h2>Description</h2>
+                    <p>${data.description || "During the college football season Alee, Raleigh, and Roman were part of different College Football Pick Em's groups. Traditionally, each group commissioner would manually create Pick Em's lists, collect participants' predictions, and input game results into an Excel spreadsheet to determine the best predictor.."}</p>
+                    <p>During the college football season, Matthew, Alee, Raleigh, and Roman were part of different College Football Pick Em's groups. Traditionally, each group commissioner would manually create Pick Em's lists, collect participants' predictions, and input game results into an Excel spreadsheet to determine the best predictor.</p>
+                    <p>Realizing that this tedious process took hours away from socializing and fun, we created Qwyk Em's! Our platform streamlines the entire process by automatically generating Pick Em's sheets using smart algorithms. It records participants' selections, tracks game results, and ranks players effortlessly.</p>
+                    <p>Instead of spending over three hours per week manually updating spreadsheets for 18 weeks and bowl games, Qwyk Em's turns the game into a fun, instant activity for groups—saving time and enhancing the experience!</p>
+                    <p class="meta">⭐ Stars: ${data.stargazers_count} | 🍴 Forks: ${data.forks_count} | 🛠 Open Issues: ${data.open_issues_count}</p>
+                `;
+            } catch (error) {
+                console.error("Error fetching repository info:", error);
+                document.getElementById("repo-info").innerHTML = "Failed to load repository details.";
+            }
+        }
+
+        async function fetchCommits() {
+            const url = `https://api.github.com/repos/${owner}/${repo}/commits`;
+            try {
+                const response = await fetch(url);
+                const commits = await response.json();
+                const commitsContainer = document.getElementById("commits");
+                commitsContainer.innerHTML = "";
+
+                commits.slice(0, 5).forEach(commit => {
+                    const commitDiv = document.createElement("div");
+                    commitDiv.classList.add("commit");
+
+                    commitDiv.innerHTML = `
+                        <p class="author">${commit.commit.author.name}</p>
+                        <p>${commit.commit.message}</p>
+                        <p class="date">${new Date(commit.commit.author.date).toLocaleString()}</p>
+                    `;
+
+                    commitsContainer.appendChild(commitDiv);
+                });
+            } catch (error) {
+                console.error("Error fetching commits:", error);
+                document.getElementById("commits").innerHTML = "Failed to load commits.";
+            }
+        }
+
+        async function fetchRepoContent(path = "") {
+            const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+            try {
+                const response = await fetch(url);
+                const contents = await response.json();
+                const contentContainer = document.getElementById("repo-content");
+                contentContainer.innerHTML = "";
+
+                if (path) {
+                    document.querySelector(".back-btn").style.display = "block";
+                } else {
+                    document.querySelector(".back-btn").style.display = "none";
+                }
+
+                contents.forEach(item => {
+                    const fileDiv = document.createElement("div");
+                    fileDiv.classList.add("file");
+
+                    if (item.type === "dir") {
+                        fileDiv.innerHTML = `
+                            <p><a href="#" onclick="navigateTo('${item.path}')">${item.name} (📁 Folder)</a></p>
+                        `;
+                    } else {
+                        fileDiv.innerHTML = `
+                            <p><a href="${item.html_url}" target="_blank">${item.name} (📄 File)</a></p>
+                        `;
+                    }
+
+                    contentContainer.appendChild(fileDiv);
+                });
+
+                currentPath = path;
+            } catch (error) {
+                console.error("Error fetching repo contents:", error);
+                document.getElementById("repo-content").innerHTML = "Failed to load repository contents.";
+            }
+        }
+
+        function navigateTo(path) {
+            fetchRepoContent(path);
+        }
+
+        function goBack() {
+            if (!currentPath) return;
+            let parts = currentPath.split("/");
+            parts.pop();  // Remove last folder to go one level up
+            let newPath = parts.join("/");
+            fetchRepoContent(newPath);
+        }
+
+        function updatePage() {
+            fetchRepoInfo();
+            fetchCommits();
+            fetchRepoContent();
+        }
+
+        updatePage();
+        setInterval(updatePage, 30000); // Refresh every 30 seconds
+    </script>
+
+</body>
+</html>
