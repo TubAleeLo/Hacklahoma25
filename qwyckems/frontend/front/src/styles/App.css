@@ -12,6 +12,7 @@ body, html {
   background-attachment: fixed; /* Ensures it stays while scrolling */
   background-blend-mode: overlay;
   color: white;
+
 }
 
 
