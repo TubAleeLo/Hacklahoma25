@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacklahoma25 - GitHub Live Viewer</title>
+    <title>Hacklahoma25 - GitHub Repo Explorer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -45,6 +45,16 @@
         a:hover {
             text-decoration: underline;
         }
+        .back-btn {
+            display: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #0366d6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -57,11 +67,13 @@
     <div id="commits">Loading commits...</div>
 
     <h2>Repository Contents</h2>
+    <button class="back-btn" onclick="goBack()">⬅ Back</button>
     <div id="repo-content">Loading files...</div>
 
     <script>
         const owner = "tubaleelo";  
         const repo = "Hacklahoma25";  
+        let currentPath = "";  // Tracks current directory path
 
         async function fetchRepoInfo() {
             const url = `https://api.github.com/repos/${owner}/${repo}`;
@@ -105,28 +117,54 @@
             }
         }
 
-        async function fetchRepoContent() {
-            const url = `https://api.github.com/repos/${owner}/${repo}/contents`;
+        async function fetchRepoContent(path = "") {
+            const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
             try {
                 const response = await fetch(url);
                 const contents = await response.json();
                 const contentContainer = document.getElementById("repo-content");
                 contentContainer.innerHTML = "";
 
+                if (path) {
+                    document.querySelector(".back-btn").style.display = "block";
+                } else {
+                    document.querySelector(".back-btn").style.display = "none";
+                }
+
                 contents.forEach(item => {
                     const fileDiv = document.createElement("div");
                     fileDiv.classList.add("file");
 
-                    fileDiv.innerHTML = `
-                        <p><a href="${item.html_url}" target="_blank">${item.name}</a> (${item.type})</p>
-                    `;
+                    if (item.type === "dir") {
+                        fileDiv.innerHTML = `
+                            <p><a href="#" onclick="navigateTo('${item.path}')">${item.name} (📁 Folder)</a></p>
+                        `;
+                    } else {
+                        fileDiv.innerHTML = `
+                            <p><a href="${item.html_url}" target="_blank">${item.name} (📄 File)</a></p>
+                        `;
+                    }
 
                     contentContainer.appendChild(fileDiv);
                 });
+
+                currentPath = path;
             } catch (error) {
                 console.error("Error fetching repo contents:", error);
                 document.getElementById("repo-content").innerHTML = "Failed to load repository contents.";
             }
+        }
+
+        function navigateTo(path) {
+            fetchRepoContent(path);
+        }
+
+        function goBack() {
+            if (!currentPath) return;
+            let parts = currentPath.split("/");
+            parts.pop();  // Remove last folder to go one level up
+            let newPath = parts.join("/");
+            fetchRepoContent(newPath);
         }
 
         function updatePage() {
