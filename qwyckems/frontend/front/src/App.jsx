@@ -10,7 +10,7 @@ const App = () => {
       <div className="layout">
         {/* Navbar */}
         <nav className="navbar">
-          <img src="/qlogo.webp" alt="QwyckEm's Logo" className="logo" />
+          <img src="/qlogo.webp" alt="QwyckEm's Logo" className="logo" onClick={() => setCurrentPage("home")} />
 
           <div className="navbar-title">
             <h1>QwyckEm's</h1>
@@ -54,6 +54,10 @@ const Home = () => {
     <div>
       <h2>Welcome to QwyckEm's</h2>
       <p>Select a league to get started.</p>
+      <div className="home-buttons">
+        <button className="btn">Create Team</button>
+        <button className="btn">Join Team</button>
+      </div>
     </div>
   );
 };
