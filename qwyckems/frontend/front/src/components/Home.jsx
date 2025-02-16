@@ -3,19 +3,24 @@ import "../styles/Home.css";
 const Home = ({ setCurrentPage }) => {
   return (
     <div className="home-container">
+      {/* Logo Section */}
+      <div className="logo-section">
+        <img src="/qlogocolor.png" alt="QwyckEm's Logo" className="home-logo" />
+      </div>
+      
       {/* Welcome Section */}
       <div className="welcome-section">
-        <h1>Welcome to QwyckEm's</h1>
-        <p>Pick 'Ems done right. Create or join a team to get started!</p>
+        <h1>Welcome to QwyckEms</h1>
+        <p>Pick 'Ems done right. Create or join a league to get started!</p>
       </div>
 
       {/* Action Buttons Section */}
       <div className="home-actions">
-        <button className="home-button" onClick={() => setCurrentPage("createTeam")}>
-          Create Team
+        <button className="home-button" onClick={() => setCurrentPage("createLeague")}>
+          Create League
         </button>
-        <button className="home-button" onClick={() => setCurrentPage("joinTeam")}>
-          Join Team
+        <button className="home-button" onClick={() => setCurrentPage("joinLeague")}>
+          Join League
         </button>
       </div>
 

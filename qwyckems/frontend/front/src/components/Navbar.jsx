@@ -1,6 +1,18 @@
+import React, { useState } from "react";
 import "../styles/Navbar.css";
 
 const Navbar = ({ setCurrentPage }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleLogout = () => {
+    console.log("Logging out...");
+    // Add logout logic here (clear state, remove token, etc.)
+  };
+
   return (
     <nav className="navbar">
       {/* Left Side - Logo */}
@@ -14,15 +26,22 @@ const Navbar = ({ setCurrentPage }) => {
       </div>
 
       {/* Right Side - User Profile */}
-      <div className="user-profile">
+      <div className="user-profile" onClick={toggleDropdown}>
         <img src="/defaultprofile.avif" alt="User Profile" className="profile-pic" />
         <div className="user-info">
           <span className="user-name">Roman</span>
           <span className="user-role">Commissioner</span>
         </div>
+
+        {/* Dropdown Menu */}
+        {dropdownOpen && (
+          <div className="dropdown-menu">
+            <button onClick={() => setCurrentPage("edit-profile")}>Edit Profile</button>
+            <button onClick={handleLogout}>Log Out</button>
+          </div>
+        )}
       </div>
     </nav>
-
   );
 };
 

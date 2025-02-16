@@ -5,6 +5,21 @@
   margin: 0 auto;
 }
 
+/* Logo Section */
+.logo-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Space between logo and text */
+}
+
+.home-logo {
+  width: 150px; /* Adjust size as needed */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Ensure responsiveness */
+}
+
+
 /* Welcome Section */
 .welcome-section h1 {
   font-size: 2.5rem;

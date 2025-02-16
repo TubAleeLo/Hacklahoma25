@@ -12,6 +12,7 @@ body, html {
   background-attachment: fixed; /* Ensures it stays while scrolling */
   background-blend-mode: overlay;
   color: white;
+
 }
 
 
@@ -43,6 +44,8 @@ body, html {
   backdrop-filter: blur(6px); /* Lighter blur to reveal stadium */
   opacity: 0;
   animation: fadeIn 0.5s ease-in-out forwards;
+  height: calc(100vh - 85px); /* Ensures it fits within visible space */
+  overflow-y: auto; /* Enables vertical scrolling */
 }
 
 

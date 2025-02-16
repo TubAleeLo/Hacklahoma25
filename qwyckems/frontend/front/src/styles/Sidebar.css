@@ -1,12 +1,14 @@
   .sidebar {
     width: 250px;
     height: 100vh;
-    background: linear-gradient(135deg, #090617, #18102D); /* Deep purplish black */
-    backdrop-filter: blur(8px); /* Glassmorphism effect */
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(44, 30, 74, 0.7);
+    backdrop-filter: blur(10px);
+    border-right: 2px solid rgba(106, 90, 205, 0.6);
     padding: 20px;
-    transition: 0.3s ease-in-out;
+    box-shadow: 4px 4px 20px rgba(106, 90, 205, 0.2);
+    overflow-y: auto; /* Enables sidebar scrolling */
   }
+
 
   .sidebar:hover {
     backdrop-filter: blur(12px);

@@ -11,7 +11,8 @@ const Sidebar = ({ expandedLeague, toggleLeague, setCurrentPage }) => {
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: expandedLeague === "OU CS 2025" ? "auto" : 0, opacity: expandedLeague === "OU CS 2025" ? 1 : 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          style={{ overflow: "hidden" }}
+          style={{ overflow: "hidden", paddingLeft: "20px" }} /* Indent dropdown */
+
         >
           <li className="week" onClick={() => setCurrentPage("week1")}>Week 1</li>
           <li className="week" onClick={() => setCurrentPage("week2")}>Week 2</li>
