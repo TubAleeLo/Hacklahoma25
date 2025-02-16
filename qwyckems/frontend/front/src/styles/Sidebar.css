@@ -1,7 +1,7 @@
   .sidebar {
     width: 250px;
     height: 100vh;
-    background: rgba(44, 30, 74, 0.6); /* Semi-transparent */
+    background: linear-gradient(135deg, #090617, #18102D); /* Deep purplish black */
     backdrop-filter: blur(8px); /* Glassmorphism effect */
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     padding: 20px;
