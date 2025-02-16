@@ -1,5 +1,7 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from markupsafe import escape
+from bson.json_util import dumps
+from json import loads
 app = Flask(__name__)
 
 from pymongo.server_api import ServerApi
@@ -31,11 +33,15 @@ def login(username):
     if request.method == 'POST':
         return addPlayer(username)
     else:
-        return player.find_one({'username':username})
+        return jsonify(loads(dumps(player.find_one({'username':username}))))
+
+# To get data:
+# json_data 
 
 @app.route('/<username>/leagues')
 def getLeaguesFromUsername(username):
-    return leaguePlayer.find({'playerID':username})
+    var = list(leaguePlayer.find({'playerID':username}))
+    return jsonify(loads(dumps(var)))
 
 @app.route('/admin/<team1>/<team2>/<week>')
 def game(team1, team2, week):
@@ -44,6 +50,7 @@ def game(team1, team2, week):
 @app.route('/admin/addWins/<gameID>/<winningTeam>')
 def addWins(gameID, winningTeam):
     adminRealWinner(gameID, winningTeam)
+    return jsonify({"response":'ok'})
 
 @app.route('/login/<username>/<gameID>/<prediction>')
 def addPrediction(username, gameID, prediction):
@@ -59,3 +66,5 @@ def pullRankings(leagueID):
 
 
     
+if __name__ == '__main__':
+    app.run(debug = True)
