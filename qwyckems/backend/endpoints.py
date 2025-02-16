@@ -62,7 +62,7 @@ def addPrediction(username, gameID, prediction):
     addPick(username, gameID, prediction)
     return jsonify({'response':'ok'})
 
-@app.route('/league/<leagueID>')
+@app.route('/rankings/<leagueID>')
 def pullRankings(leagueID):
     orderedList = list()
     orderedList.append(leaguePlayer.find({'ranking':1}))
