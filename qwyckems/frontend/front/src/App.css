@@ -72,3 +72,42 @@
   padding-left: 20px;
   font-size: 0.9rem;
 }
+
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.game-card {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px;
+}
+
+.game-selection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pick-button {
+  padding: 10px;
+  border: none;
+  background-color: gray;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.pick-button.selected {
+  background-color: purple;
+  transform: scale(1.2);
+}
