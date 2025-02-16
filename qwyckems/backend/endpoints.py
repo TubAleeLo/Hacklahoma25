@@ -70,7 +70,10 @@ def pullRankings(leagueID):
     orderedList = list()
     orderedList.append(leaguePlayer.find({'ranking':1}))
     orderedList.append(leaguePlayer.find({'ranking':2}))
-    orderedList.append(leaguePlayer.find({'ranking':3}))
+    third = list(leaguePlayer.find({'ranking':3}))
+    if len(third) != 0:
+        orderedList.append(leaguePlayer.find({'ranking':3}))
+    print(orderedList)
     return jsonify(loads(dumps(orderedList)))
 
 
