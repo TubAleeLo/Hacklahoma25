@@ -6,8 +6,17 @@ const CreateLeague = ({ setCurrentPage }) => {
   const [visibility, setVisibility] = useState("public");
   const [weeks, setWeeks] = useState(6);
   const [inviteCode, setInviteCode] = useState(null);
+  const [error, setError] = useState("");
 
   const generateInviteCode = () => {
+    // Check if all required fields are filled
+    if (!leagueName.trim() || !description.trim()) {
+      setError("Please fill out all fields before generating an invite code.");
+      return;
+    }
+
+    setError(""); // Clear any previous errors
+
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     let code = "";
     for (let i = 0; i < 5; i++) {
@@ -48,6 +57,8 @@ const CreateLeague = ({ setCurrentPage }) => {
           <option value={8}>8</option>
           <option value={12}>12</option>
         </select>
+
+        {error && <p className="error-message">{error}</p>} {/* Display error if validation fails */}
 
         <button onClick={generateInviteCode}>Generate Invite Code</button>
         {inviteCode && <p className="invite-code">Invite Code: {inviteCode}</p>}
